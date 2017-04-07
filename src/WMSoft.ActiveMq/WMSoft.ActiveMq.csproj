@@ -49,6 +49,7 @@
     <Compile Include="Config\SectionController.cs" />
     <Compile Include="Config\Section.cs" />
     <Compile Include="Helper\ConnectionPool.cs" />
+    <Compile Include="Consumer\Base\Consumer.cs" />
     <Compile Include="Producer\LogProducer.cs" />
     <Compile Include="Producer\Base\Producer.cs" />
     <Compile Include="Helper\ByteHelper.cs" />
