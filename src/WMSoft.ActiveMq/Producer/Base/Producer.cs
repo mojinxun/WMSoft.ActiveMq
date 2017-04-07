@@ -12,29 +12,26 @@ namespace WMSoft.ActiveMq
     /// </summary>
     public class Producer
     {
-        ServiceConfig _config = null;
+        ServiceConfig config = null;
         internal Producer(string name)
         {
-            _config = SectionController.Default.GetConfig(name);
+            config = SectionController.Default.GetConfig(name);
         }
-        public ServiceConfig ServiceConfig
-        {
-            get { return _config; }
-        }
+
         /// <summary>
         /// 发送消息
         /// </summary>
         /// <param name="arr"></param>
         public virtual void Send(byte[] arr)
         {
-            if (_config == null || arr == null || arr.Length < 1)
+            if (config == null || arr == null || arr.Length < 1)
                 return;
             //IConnectionFactory factory = new ConnectionFactory(_config.ActiveMQUri);
-            var connection = ConnectionPool.GetConnection(_config.Name, _config.ActiveMQUri);
+            var connection = ConnectionPool.GetConnection(config.Name, config.ActiveMQUri);
             using (ISession session = connection.CreateSession())
             {
                 IMessageProducer prod = session.CreateProducer(
-                    new Apache.NMS.ActiveMQ.Commands.ActiveMQQueue(_config.TopicOrQueueName));
+                    new Apache.NMS.ActiveMQ.Commands.ActiveMQQueue(config.TopicOrQueueName));
 
                 IBytesMessage msg = prod.CreateBytesMessage();
 
