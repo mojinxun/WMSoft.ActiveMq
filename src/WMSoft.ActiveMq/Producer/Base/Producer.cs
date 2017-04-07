@@ -13,9 +13,9 @@ namespace WMSoft.ActiveMq
     public class Producer
     {
         ServiceConfig _config = null;
-        internal Producer(ConfigEnum configEnum)
+        internal Producer(string name)
         {
-            _config = SectionController.Default.GetConfig(configEnum);
+            _config = SectionController.Default.GetConfig(name);
         }
         public ServiceConfig ServiceConfig
         {

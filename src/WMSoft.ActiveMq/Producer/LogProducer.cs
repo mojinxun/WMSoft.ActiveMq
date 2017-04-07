@@ -1,5 +1,4 @@
 ﻿using WMSoft.ActiveMq.Helper;
-using WMSoft.ActiveMq.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,17 +6,17 @@ using System.Text;
 
 namespace WMSoft.ActiveMq
 {
-    public sealed class LogProducer : Producer
+    public sealed class LogProducer<T> : Producer where T : class
     {
         internal LogProducer()
-            : base(ConfigEnum.testlog)
+            : base("")
         {
         }
         /// <summary>
         /// 发送订单消息
         /// </summary>
         /// <param name="message"></param>
-        public void Send(LogMessage message)
+        public void Send(T message)
         {
             if (message == null)
                 return;
